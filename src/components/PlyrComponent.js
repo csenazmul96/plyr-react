@@ -1,7 +1,11 @@
 'use client';
 
-import React, {forwardRef, useEffect, useImperativeHandle, useRef, useState} from 'react';
-import Plyr from 'plyr-react'; 
+import  {forwardRef, useEffect, useImperativeHandle, useRef, useState} from 'react';
+import dynamic from 'next/dynamic';
+
+const Plyr = dynamic(() => import('plyr-react'), {
+    ssr: false,
+});
 
 
 const TimerComponent = forwardRef(function TimerComponent({ }, ref) {
@@ -23,7 +27,7 @@ const TimerComponent = forwardRef(function TimerComponent({ }, ref) {
 });
 
 
-export default function PlyrCompnent() {
+export default function PlyrComponent() {
 
     const playerRef = useRef(null);
     const timerRef = useRef(null);
