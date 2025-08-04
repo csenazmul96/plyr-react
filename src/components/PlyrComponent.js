@@ -31,16 +31,19 @@ export default function PlyrComponent() {
 
     const playerRef = useRef(null);
     const timerRef = useRef(null);
-    useEffect(() => {
-        if (playerRef.current?.plyr) {
-            setTimeout(() => {
-            const plyrInstance = playerRef.current.plyr;
-                plyrInstance.on('timeupdate', (e)=>{
-                    timerRef.current.setNewTime(plyrInstance.currentTime)
-                })
 
-            }, 50)
-        }
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const plyrInstance = playerRef.current?.plyr;
+            if (plyrInstance) {
+                plyrInstance.on('timeupdate', () => {
+                    timerRef.current?.setNewTime(plyrInstance.currentTime);
+                });
+                clearInterval(interval);
+            }
+        }, 100);
+
+        return () => clearInterval(interval);
     }, []);
 
     const videoSource = {
