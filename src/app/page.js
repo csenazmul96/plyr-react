@@ -34,8 +34,12 @@
           </Head>
 
           <div className="flex flex-col items-center justify-center min-h-screen p-4">
-        <PlyrComponent />
-    </div>
-     </>
+              <h1 className="text-3xl font-bold mb-6 text-center">
+                  Modern React Video Player with Plyr-React
+              </h1>
+              <PlyrComponent />
+          </div>
+
+      </>
   );
 }
